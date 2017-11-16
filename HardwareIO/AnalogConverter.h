@@ -8,7 +8,7 @@ public:
     AnalogConverter();
 
     void setValveVoltage(float voltage);
-    float readObervedValveVoltage();
+    float readObservedVoltage();
 
 private:
     float m_desiredVoltage;

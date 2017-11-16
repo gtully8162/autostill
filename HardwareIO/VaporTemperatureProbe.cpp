@@ -33,6 +33,9 @@ float VaporTemperatureProbe::readTemperature()
     else
     {
          qDebug() << "running on desktop. simulating vapor probe temperature retrieval ";
-        return 0.0;
+        static float simulatedTemp = 77.0;
+        if(simulatedTemp > 79){simulatedTemp = 77.0; }
+        simulatedTemp += 0.3;
+        return simulatedTemp;
     }
 }

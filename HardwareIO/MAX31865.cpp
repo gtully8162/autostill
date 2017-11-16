@@ -12,6 +12,8 @@
 
   Written by Limor Fried/Ladyada for Adafruit Industries.
   BSD license, all text above must be included in any redistribution
+
+  GTully: ported Adafruit MAX31865 arduino C code to rasperry pi
  ****************************************************/
 
 #include "MAX31865.h"
@@ -102,7 +104,7 @@ float  MAX31865::temperature(float RTDnominal, float refResistor) {
 
   if (temp >= 0) return temp;
 
-  // ugh.
+
   float rpoly = Rt;
 
   temp = -242.02;

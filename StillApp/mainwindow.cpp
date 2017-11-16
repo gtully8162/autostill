@@ -7,14 +7,15 @@
 #include <QtCharts/QChartView>
 #include "VaporTemperatureProbe.h"
 #include "AnalogConverter.h"
-
+#include <QThread>
 #include "TemperaturePlotWidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
   m_vaporTemperatureProbe(new VaporTemperatureProbe),
-  m_analogConverter(new AnalogConverter)
+  m_analogConverter(new AnalogConverter),
+  m_temperaturePlot(new TemperaturePlotWidget)
 {
     ui->setupUi(this);
 
@@ -32,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->logoWidget->setLayout(new QVBoxLayout());
     ui->logoWidget->layout()->addWidget(imageLabel);
 
-//     QObject::connect(ui->vaporTemperatureUpButton, SIGNAL(clicked()), this, SLOT(updateVaporTemperature()));
+    QObject::connect(ui->vaporTemperatureUpButton, SIGNAL(clicked()), this, SLOT(updateVaporTemperature()));
 
 
      QTimer *timer = new QTimer(this);
@@ -45,7 +46,8 @@ void MainWindow::readSensors()
 {
     float tempterature = m_vaporTemperatureProbe->readTemperature() * 1.8 + 32 ;
     ui->currentVaporTemp->display(tempterature);
-    float voltage = m_analogConverter->readObervedValveVoltage();
+    m_temperaturePlot->update(tempterature);
+    float voltage = m_analogConverter->readObservedVoltage();
     qDebug() << "current voltage: " << voltage;
 
 
@@ -53,8 +55,8 @@ void MainWindow::readSensors()
 
 void MainWindow::updateVaporTemperature()
 {
-//    float tempterature = m_vaporTemperatureProbe->readTemperature() * 1.8 + 32 ;
-//    ui->currentVaporTemp->display(tempterature);
+    QThread::msleep(20);
+    m_analogConverter->setValveVoltage(4.9);
 }
 
 MainWindow::~MainWindow()

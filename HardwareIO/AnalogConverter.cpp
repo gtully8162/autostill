@@ -4,7 +4,7 @@
 #include <pcf8591.h>
 #include "DeviceUtilities.h"
 
-const int PCF_BASE_PIN = 120;
+const int PCF_BASE_PIN = 130;
 const float REFERENCE_VOLTAGE = 5.0;
 
 AnalogConverter::AnalogConverter()
@@ -21,8 +21,9 @@ void AnalogConverter::setValveVoltage(float voltage)
     m_desiredVoltage = voltage;
     if(isDevice())
     {
-        int value = voltage / REFERENCE_VOLTAGE * 255;
-        analogWrite(PCF_BASE_PIN, value);
+//        int value = voltage / REFERENCE_VOLTAGE * 255;
+        analogWrite(PCF_BASE_PIN, 254);
+        qDebug() << "out 254";
     }
     else
     {
@@ -30,7 +31,7 @@ void AnalogConverter::setValveVoltage(float voltage)
     }
 }
 //        if(abs(m_desiredVoltage - voltage) < .01)
-float AnalogConverter::readObervedValveVoltage()
+float AnalogConverter::readObservedVoltage()
 {
     if(isDevice())
     {
