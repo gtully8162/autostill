@@ -1,16 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-04-22T10:17:10
+# Project created by QtCreator 2017-04-26T17:08:00
 #
 #-------------------------------------------------
 
-QT       += core gui charts
+QT       -= gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = StillApp
-TEMPLATE = app
-#INSTALLS = target
+TARGET = HardwareIO
+TEMPLATE = lib
+CONFIG += staticlib
+desktop: DEFINES += DESKTOP_BUILD
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -23,27 +22,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+#SOURCES += \
+#    <>.cpp \
 
-SOURCES += main.cpp\
-    mainwindow.cpp \
-    BurnRateControlAlgorithm.cpp \
-    TemperaturePlotWidget.cpp
+#HEADERS += \
+#    <>.h \
 
-HEADERS  += mainwindow.h \
-    BurnRateControlAlgorithm.h \
-    TemperaturePlotWidget.h
-
-FORMS    += mainwindow.ui
-
-
-INCLUDEPATH += ../HardwareIO ../Common /usr/local/include/
-LIBS += -lwiringPi -L../HardwareIO/ -lHardwareIO
-
-
-INSTALLS        = target
-target.files    = StillApp
-target.path     = /home/pi
-
-RESOURCES += \
-    resources.qrc
-
+#unix {
+#    target.path = /usr/lib
+#    INSTALLS += target
+#}
+#INCLUDEPATH += /usr/local/include/

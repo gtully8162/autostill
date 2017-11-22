@@ -4,6 +4,7 @@ LIBS += -lwiringPi
 
 
 SUBDIRS += \
+    Common \
     HardwareIO \
     StillApp
 
