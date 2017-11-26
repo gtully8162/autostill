@@ -20,22 +20,25 @@ VaporTemperatureProbe::VaporTemperatureProbe()
     }
 }
 
-float VaporTemperatureProbe::readTemperature()
+VaporTemperatureSample VaporTemperatureProbe::readTemperature()
 {
+
+    float temperature = 0;
     if(isDevice())
     {
         const float referenceResistor =  430.0;
         const float rtdNominalResistance = 100.0;
-        int fault =  m_hw->readFault();
-        qDebug() << "pre read fault code: " <<  fault;
-        return m_hw->temperature(rtdNominalResistance,referenceResistor);
+//        int fault =  m_hw->readFault();
+//        qDebug() << "pre read fault code: " <<  fault;
+        temperature = m_hw->temperature(rtdNominalResistance,referenceResistor);
     }
     else
     {
-         qDebug() << "running on desktop. simulating vapor probe temperature retrieval ";
+//        qDebug() << "running on desktop. simulating vapor probe temperature retrieval ";
         static float simulatedTemp = 77.0;
         if(simulatedTemp > 93){simulatedTemp = 77.0; }
         simulatedTemp += 0.8;
-        return simulatedTemp;
+        temperature = simulatedTemp;
     }
+    return VaporTemperatureSample(temperature);
 }

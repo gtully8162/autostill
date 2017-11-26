@@ -2,6 +2,7 @@
 #define HARDWAREIO_H
 
 #include <QSharedPointer>
+#include "DataStructures.h"
 
 class MAX31865;
 class VaporTemperatureProbe
@@ -9,7 +10,7 @@ class VaporTemperatureProbe
 
 public:
     VaporTemperatureProbe();
-    float readTemperature();
+    VaporTemperatureSample readTemperature();
 
 private:
    QSharedPointer<MAX31865> m_hw;

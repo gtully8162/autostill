@@ -1,6 +1,7 @@
 #ifndef TEMPERATUREPLOTWIDGET_H
 #define TEMPERATUREPLOTWIDGET_H
 #include <QList>
+#include "DataStructures.h"
 namespace QtCharts
 {
 class QLineSeries;
@@ -13,7 +14,7 @@ class TemperaturePlotWidget
 public:
     TemperaturePlotWidget();
     QtCharts::QChartView* getView();
-    void update(float datapoint);
+    void update(const VaporTemperatureSample& datapoint);
 
 private:
    QtCharts::QLineSeries *m_temperatureSeries;

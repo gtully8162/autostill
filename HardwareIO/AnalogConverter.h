@@ -7,11 +7,11 @@ public:
 
     AnalogConverter();
 
-    void setValveVoltage(float voltage);
+    void setOutputPercent(float percent);
     float readObservedVoltage();
 
 private:
-    float m_desiredVoltage;
+    float m_desiredPercentage;
 };
 
 

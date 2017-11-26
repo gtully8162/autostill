@@ -1,11 +1,11 @@
 #include "AnalogConverter.h"
 #include <QDebug>
+#include <QThread>
 #include <wiringPi.h>
 #include <pcf8591.h>
 #include "DeviceUtilities.h"
 
-const int PCF_BASE_PIN = 130;
-const float REFERENCE_VOLTAGE = 5.0;
+const int PCF_BASE_PIN = 120;
 
 AnalogConverter::AnalogConverter()
 {
@@ -16,28 +16,30 @@ AnalogConverter::AnalogConverter()
     }
 }
 
-void AnalogConverter::setValveVoltage(float voltage)
+void AnalogConverter::setOutputPercent(float percent)
 {
-    m_desiredVoltage = voltage;
+    m_desiredPercentage = percent;
+
+    int outputValue = 255*(percent/100.0);
     if(isDevice())
     {
-//        int value = voltage / REFERENCE_VOLTAGE * 255;
-        analogWrite(PCF_BASE_PIN, 254);
-        qDebug() << "out 254";
+        QThread::msleep(20);
+        analogWrite(PCF_BASE_PIN, outputValue);
     }
     else
     {
         qDebug() << "running on desktop. simulating setting of valve voltage ";
     }
+    qDebug() << "analog output set to: " <<  outputValue;
 }
-//        if(abs(m_desiredVoltage - voltage) < .01)
+
 float AnalogConverter::readObservedVoltage()
 {
     if(isDevice())
     {
-        int observedVoltage = analogRead(PCF_BASE_PIN) / 255 * REFERENCE_VOLTAGE;
-//        adjustVoltage(observedVoltage);
-        return observedVoltage;
+//        int observedVoltage = analogRead(PCF_BASE_PIN) / 255 * REFERENCE_VOLTAGE;
+        QThread::msleep(20);
+        return 0;
     }
     else
     {
@@ -45,18 +47,3 @@ float AnalogConverter::readObservedVoltage()
         return 0.0;
     }
 }
-
-//void AnalogConverter::adjustVoltage(float observedVoltage)
-//{
-//    float deltaVoltage = observedVoltage - m_desiredVoltage;
-
-
-//    if(deltaVoltage > 0.0)
-//    {
-
-//    }
-//    else if(deltaVoltage < 0.0)
-//    {
-
-//    }
-//}

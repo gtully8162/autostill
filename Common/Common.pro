@@ -25,8 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #SOURCES += \
 #    <>.cpp \
 
-#HEADERS += \
-#    <>.h \
+HEADERS += \
+    DataStructures.h
 
 #unix {
 #    target.path = /usr/lib

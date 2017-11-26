@@ -3,13 +3,12 @@
 
 #include <QMainWindow>
 
-
 namespace Ui {
 class MainWindow;
 }
-class VaporTemperatureProbe;
-class AnalogConverter;
 class TemperaturePlotWidget;
+class VaporTemperatureSample;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,14 +16,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-private slots:
-    void updateVaporTemperature();
-    void readSensors();
+
+public slots:
+    void updateVaporTemperature(const VaporTemperatureSample& sample);
 
 private:
     Ui::MainWindow *ui;
-    QSharedPointer<VaporTemperatureProbe> m_vaporTemperatureProbe;
-    QSharedPointer<AnalogConverter> m_analogConverter;
     QSharedPointer<TemperaturePlotWidget> m_temperaturePlot;
 };
 

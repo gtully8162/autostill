@@ -35,7 +35,7 @@ bool pointYCoordinateLessThan(const QPointF& left, const QPointF& right)
     return left.y() < right.y();
 }
 
-void TemperaturePlotWidget::update(float datapoint)
+void TemperaturePlotWidget::update(const VaporTemperatureSample& datapoint)
 {
     if(m_temperatureSeries->points().size() >= 20)
     {
@@ -43,7 +43,7 @@ void TemperaturePlotWidget::update(float datapoint)
     }
     //needed to continuously increment x coordinate
     static long xIncrement = 0;
-    m_temperatureSeries->append(xIncrement++, datapoint);
+    m_temperatureSeries->append(xIncrement++, datapoint.fahrenheitValue());
 
     //update axis range
     const QList<QPointF>& points = m_temperatureSeries->points();

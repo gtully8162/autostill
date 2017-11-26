@@ -25,25 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-    mainwindow.cpp \
     BurnRateControlAlgorithm.cpp \
-    TemperaturePlotWidget.cpp
+    StillAppController.cpp
 
-HEADERS  += mainwindow.h \
-    BurnRateControlAlgorithm.h \
-    TemperaturePlotWidget.h
+HEADERS  += BurnRateControlAlgorithm.h \
+    StillAppController.h
 
-FORMS    += mainwindow.ui
-
-
-INCLUDEPATH += ../HardwareIO ../Common /usr/local/include/
-LIBS += -lwiringPi -L../HardwareIO/ -lHardwareIO
-
+INCLUDEPATH += ../HardwareIO ../StillGUI ../Common /usr/local/include/
+LIBS += -lwiringPi -L../HardwareIO/ -lHardwareIO -L../StillGUI/ -lStillGUI
 
 INSTALLS        = target
 target.files    = StillApp
 target.path     = /home/pi
 
-RESOURCES += \
-    resources.qrc
 
