@@ -27,7 +27,6 @@ TemperaturePlotWidget::TemperaturePlotWidget()
 
     m_chartView = new QChartView(chart);
     m_chartView->setRenderHint(QPainter::Antialiasing);
-
 }
 
 bool pointYCoordinateLessThan(const QPointF& left, const QPointF& right)
@@ -37,12 +36,20 @@ bool pointYCoordinateLessThan(const QPointF& left, const QPointF& right)
 
 void TemperaturePlotWidget::update(const VaporTemperatureSample& datapoint)
 {
-    if(m_temperatureSeries->points().size() >= 20)
+    //needed to continuously increment x coordinate
+    static long xIncrement = 0;
+
+    if(m_temperatureSeries->points().size() < 100)
+    {
+        for(int i=0; i<100; ++i)
+        {
+            m_temperatureSeries->append(xIncrement++, datapoint.fahrenheitValue());
+        }
+    }
+    else
     {
         m_temperatureSeries->remove(0);
     }
-    //needed to continuously increment x coordinate
-    static long xIncrement = 0;
     m_temperatureSeries->append(xIncrement++, datapoint.fahrenheitValue());
 
     //update axis range

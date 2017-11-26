@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="setPointVaporTemp">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -47,7 +47,7 @@
      <string>Up</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="vaporTemperatureDownButton">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -124,7 +124,7 @@
      <string>Set Point °F:</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber_3">
+   <widget class="QLCDNumber" name="peakVaporTemp">
     <property name="geometry">
      <rect>
       <x>540</x>
