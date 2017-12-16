@@ -3,6 +3,18 @@
 
 #include <QTime>
 #include <QMetaType>
+enum OperationModeType{
+    AUTOSTILL_MODE,
+    MANUAL_MODE,
+    CALIBRATION_MODE
+};
+
+enum AutoStillRunType
+{
+    HEADS_RUN,
+    SPIRIT_RUN
+};
+
 
 class VaporTemperatureSample {
 

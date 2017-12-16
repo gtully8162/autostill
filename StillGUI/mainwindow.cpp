@@ -14,14 +14,16 @@ MainWindow::MainWindow(QWidget *parent) :
     m_temperaturePlot(new TemperaturePlotWidget),
     m_vaporTemperatureSetPoint(150.0f)
 {
-    ui->setupUi(this);
+///    ->setupUi(this);
 
     ui->chartWidget->setLayout(new QVBoxLayout());
     ui->chartWidget->layout()->addWidget(m_temperaturePlot->getView());
 
-    ui->peakVaporTemp->display(m_vaporTemperatureSetPoint);
-    QObject::connect(ui->vaporTemperatureUpButton, SIGNAL(clicked()), this, SLOT(incrementVaporSetpoint()));
-    QObject::connect(ui->vaporTemperatureDownButton, SIGNAL(clicked()), this, SLOT(decrementVaporSetpoint()));
+//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
+//    QObject::connect(ui->vaporTemperatureUpButton, SIGNAL(clicked()), this, SLOT(incrementVaporSetpoint()));
+//    QObject::connect(ui->vaporTemperatureDownButton, SIGNAL(clicked()), this, SLOT(decrementVaporSetpoint()));
+
+     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabSelected(int)));
     //------------------------------------------
     //Tully brew logo
     QPixmap image(":/images/logo.jpg");
@@ -33,6 +35,23 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->logoWidget->setLayout(new QVBoxLayout());
     ui->logoWidget->layout()->addWidget(imageLabel);
 
+//    ui->autoMode->
+
+}
+void MainWindow::onTabSelected(int selectedTabIndex)
+{
+    if(selectedTabIndex == 0)
+    {
+        emit selectMode(AUTOSTILL_MODE);
+    }
+    else if(selectedTabIndex == 1)
+    {
+       emit selectMode(MANUAL_MODE) ;
+    }
+    else if(selectedTabIndex == 2)
+    {
+        emit selectMode(CALIBRATION_MODE);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -42,14 +61,14 @@ MainWindow::~MainWindow()
 void MainWindow::incrementVaporSetpoint()
 {
     m_vaporTemperatureSetPoint += 0.1f;
-    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
-    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
+//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
+//    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
 }
 void MainWindow::decrementVaporSetpoint()
 {
     m_vaporTemperatureSetPoint -= 0.1f;
-    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
-    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
+//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
+//    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
 }
 
 void MainWindow::updateVaporTemperature(const VaporTemperatureSample& sample)
@@ -62,4 +81,9 @@ void MainWindow::updateVaporTemperature(const VaporTemperatureSample& sample)
     {
         ui->peakVaporTemp->display(sample.fahrenheitValue());
     }
+}
+
+void MainWindow::updateBurnRate(float burnRate)
+{
+  Q_UNUSED(burnRate);
 }

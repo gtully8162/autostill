@@ -1,13 +1,19 @@
 #ifndef BURNRATCONTROLALGORITHM_H
 #define BURNRATCONTROLALGORITHM_H
 
+#include "DataStructures.h"
 class BurnRateConrtrolAlgorithm
 {
 public:
     BurnRateConrtrolAlgorithm();
+    void addTemperatureSample(const VaporTemperatureSample& VaporTemperatureSample);
+    void selectRun(AutoStillRunType selectedRun);
+    float calculateBurnRate();
+
 private:
 
-    float m_temperatureSetPoint;
+    QList<VaporTemperatureSample> m_dataPoints;
+    AutoStillRunType m_selectedRun;
 
 
 };

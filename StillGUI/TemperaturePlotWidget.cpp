@@ -60,7 +60,7 @@ void TemperaturePlotWidget::update(const VaporTemperatureSample& datapoint)
 
     int minY = (std::min_element(points.begin(), points.end(), pointYCoordinateLessThan))->y();
     int maxY = (std::max_element(points.begin(), points.end(), pointYCoordinateLessThan))->y();
-    m_axisY->setRange(minY-5,maxY+5);
+    m_axisY->setRange(minY-1,maxY+1);
 
     //update chart
     m_chartView->repaint();

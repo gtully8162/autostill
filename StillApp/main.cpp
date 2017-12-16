@@ -20,9 +20,16 @@ int main(int argc, char *argv[])
     MainWindow uiWindow;
     uiWindow.show();
 
-    //connect events
     qRegisterMetaType< VaporTemperatureSample >("VaporTemperatureSample");
-    QObject::connect(controller, SIGNAL(temperatureSampleAvailable(const VaporTemperatureSample&)), &uiWindow, SLOT(updateVaporTemperature(const VaporTemperatureSample&)));
+
+    //ui output events
+    QObject::connect(controller, SIGNAL(temperatureSampleAvailable(VaporTemperatureSample)), &uiWindow, SLOT(updateVaporTemperature(const VaporTemperatureSample&)));
+    QObject::connect(controller, SIGNAL(calculatedBurnRateAvailable(float)), &uiWindow, SLOT(updateBurnRate(float)));
+
+    //user input events
+    QObject::connect(&uiWindow, SIGNAL(manuallySetBurnRate(float)), controller, SLOT(setBurnRate(float)));
+    QObject::connect(&uiWindow, SIGNAL(selectAutoStillRun(AutoStillRunType)), controller, SLOT(onAutoStillRunSelected(AutoStillRunType)));
+    QObject::connect(&uiWindow, SIGNAL(selectMode(OperationModeType)), controller, SLOT(onModeSelected(OperationModeType)));
 
     return a.exec();
 }

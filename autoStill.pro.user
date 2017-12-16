@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.2.1, 2017-11-26T00:15:54. -->
+<!-- Written by QtCreator 4.2.1, 2017-12-07T22:47:44. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -532,8 +532,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
-       <value type="QString">/home/gt/workspace/build-autoStill-raspberry_pi-Release/StillApp/StillApp</value>
        <value type="QString">/home/gt/workspace/build-autoStill-raspberry_pi-Debug/StillApp/StillApp</value>
+       <value type="QString">/home/gt/workspace/build-autoStill-raspberry_pi-Release/StillApp/StillApp</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
        <value type="QString">192.168.1.170</value>
@@ -548,8 +548,8 @@
        <value type="QString">/home/gt/raspi/sysroot</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2017-05-06T12:27:40</value>
        <value type="QDateTime">2017-11-25T21:28:36</value>
+       <value type="QDateTime">2017-05-06T12:27:40</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">false</value>
