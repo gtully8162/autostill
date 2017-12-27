@@ -3,6 +3,7 @@
 #include <QLayout>
 #include <QDebug>
 #include <QTimer>
+#include <QImage>
 #include <QSharedPointer>
 #include <QtCharts/QChartView>
 #include <QThread>
@@ -19,23 +20,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->chartWidget->setLayout(new QVBoxLayout());
     ui->chartWidget->layout()->addWidget(m_temperaturePlot->getView());
 
-    ui->burnRateIndicator->setValue(0);
-    QObject::connect(ui->manualBurnRateUpButton, SIGNAL(clicked()), this, SLOT(incrementBurnRate()));
-    QObject::connect(ui->manualBurnRateDownButton, SIGNAL(clicked()), this, SLOT(decrementBurnRate()));
-
+    ui->burnRateIndicator->setValue(m_currentBurnRate);
+    QObject::connect(ui->manualBurnRateUpButton, SIGNAL(pressed()), this, SLOT(incrementBurnRate()));
+    QObject::connect(ui->manualBurnRateDownButton, SIGNAL(pressed()), this, SLOT(decrementBurnRate()));
      connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabSelected(int)));
     //------------------------------------------
     //Tully brew logo
-    QPixmap image(":/images/logo.jpg");
+    QImage image(":/logo");
     QLabel* imageLabel = new QLabel();
 
     imageLabel->setScaledContents(true);
     imageLabel->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-    imageLabel->setPixmap(image);
+    imageLabel->setPixmap(QPixmap::fromImage(image));
     ui->logoWidget->setLayout(new QVBoxLayout());
     ui->logoWidget->layout()->addWidget(imageLabel);
-
-//    ui->autoMode->
 
 }
 void MainWindow::onTabSelected(int selectedTabIndex)
@@ -84,12 +82,14 @@ void MainWindow::decrementBurnRate()
 void MainWindow::updateVaporTemperature(const VaporTemperatureSample& sample)
 {
     ui->currentVaporTemp->display(sample.fahrenheitValue());
+    ui->currentVaporTemp2->display(sample.fahrenheitValue());
     m_temperaturePlot->update(sample);
 
     float currentPeakTemp = ui->peakVaporTemp->value();
     if(currentPeakTemp < sample.fahrenheitValue())
     {
         ui->peakVaporTemp->display(sample.fahrenheitValue());
+        ui->peakVaporTemp2->display(sample.fahrenheitValue());
     }
 }
 

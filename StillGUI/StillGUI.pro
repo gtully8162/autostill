@@ -39,6 +39,5 @@ INCLUDEPATH += /usr/local/include/ ../Common
 #target.files    = StillApp
 #target.path     = /home/pi
 
-RESOURCES += \
-    resources.qrc
+
 

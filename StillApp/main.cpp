@@ -21,13 +21,14 @@ int main(int argc, char *argv[])
     uiWindow.show();
 
     qRegisterMetaType< VaporTemperatureSample >("VaporTemperatureSample");
+    qRegisterMetaType< OperationModeType >("OperationModeType");
 
     //ui output events
     QObject::connect(controller, SIGNAL(temperatureSampleAvailable(VaporTemperatureSample)), &uiWindow, SLOT(updateVaporTemperature(const VaporTemperatureSample&)));
-    QObject::connect(controller, SIGNAL(calculatedBurnRateAvailable(float)), &uiWindow, SLOT(updateBurnRate(int)));
+    QObject::connect(controller, SIGNAL(calculatedBurnRateAvailable(int)), &uiWindow, SLOT(updateBurnRate(int)));
 
     //user input events
-    QObject::connect(&uiWindow, SIGNAL(burnRateManuallySet(int)), controller, SLOT(setBurnRate(float)));
+    QObject::connect(&uiWindow, SIGNAL(burnRateManuallySet(int)), controller, SLOT(setBurnRate(int)));
     QObject::connect(&uiWindow, SIGNAL(selectAutoStillRun(AutoStillRunType)), controller, SLOT(onAutoStillRunSelected(AutoStillRunType)));
     QObject::connect(&uiWindow, SIGNAL(selectMode(OperationModeType)), controller, SLOT(onModeSelected(OperationModeType)));
 

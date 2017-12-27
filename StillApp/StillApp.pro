@@ -38,4 +38,5 @@ INSTALLS        = target
 target.files    = StillApp
 target.path     = /home/pi
 
-
+RESOURCES += \
+    resources.qrc

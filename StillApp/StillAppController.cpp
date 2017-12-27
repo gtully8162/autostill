@@ -27,7 +27,6 @@ void StillAppController::execute()
     VaporTemperatureSample sample = m_vaporTemperatureProbe->readTemperature();
     m_burnRateAlgo.addTemperatureSample(sample);
     emit temperatureSampleAvailable(sample);
-//    QThread::msleep(20);
     if(m_currentMode == AUTOSTILL_MODE)
     {
         float calculatedBurnRate = m_burnRateAlgo.calculateBurnRate();
@@ -36,7 +35,7 @@ void StillAppController::execute()
     }
 }
 
-void StillAppController::setBurnRate(float burnRate)
+void StillAppController::setBurnRate(int burnRate)
 {
     m_analogConverter->setOutputPercent(burnRate);
 }

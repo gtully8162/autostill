@@ -36,6 +36,7 @@ private:
 };
 
 Q_DECLARE_METATYPE(VaporTemperatureSample)
+Q_DECLARE_METATYPE(OperationModeType)
 //
 
 #endif // ANALOG_CONVERTER_H

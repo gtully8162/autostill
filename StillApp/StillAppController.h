@@ -18,11 +18,11 @@ public slots:
     void initialize();
     void onModeSelected(OperationModeType);
     void onAutoStillRunSelected(AutoStillRunType);
-    void setBurnRate(float burnRate);
+    void setBurnRate(int burnRate);
 
 signals:
     void temperatureSampleAvailable(VaporTemperatureSample sample);
-    void calculatedBurnRateAvailable(float burnRate);
+    void calculatedBurnRateAvailable(int burnRate);
 
 private slots:
     void execute();
