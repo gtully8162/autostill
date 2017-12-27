@@ -12,16 +12,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     m_temperaturePlot(new TemperaturePlotWidget),
-    m_vaporTemperatureSetPoint(150.0f)
+    m_currentBurnRate(0)
 {
-///    ->setupUi(this);
+    ui->setupUi(this);
 
     ui->chartWidget->setLayout(new QVBoxLayout());
     ui->chartWidget->layout()->addWidget(m_temperaturePlot->getView());
 
-//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
-//    QObject::connect(ui->vaporTemperatureUpButton, SIGNAL(clicked()), this, SLOT(incrementVaporSetpoint()));
-//    QObject::connect(ui->vaporTemperatureDownButton, SIGNAL(clicked()), this, SLOT(decrementVaporSetpoint()));
+    ui->burnRateIndicator->setValue(0);
+    QObject::connect(ui->manualBurnRateUpButton, SIGNAL(clicked()), this, SLOT(incrementBurnRate()));
+    QObject::connect(ui->manualBurnRateDownButton, SIGNAL(clicked()), this, SLOT(decrementBurnRate()));
 
      connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabSelected(int)));
     //------------------------------------------
@@ -58,17 +58,27 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::incrementVaporSetpoint()
+void MainWindow::incrementBurnRate()
 {
-    m_vaporTemperatureSetPoint += 0.1f;
-//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
-//    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
+    if(m_currentBurnRate<100)
+    {
+        m_currentBurnRate++;
+    }
+    ui->burnRateIndicator->setValue(m_currentBurnRate);
+    ui->burnRateIndicator2->setValue(m_currentBurnRate);
+
+    emit burnRateManuallySet(m_currentBurnRate);
 }
-void MainWindow::decrementVaporSetpoint()
+void MainWindow::decrementBurnRate()
 {
-    m_vaporTemperatureSetPoint -= 0.1f;
-//    ui->setPointVaporTemp->display(m_vaporTemperatureSetPoint);
-//    emit newVaporSetPoint(m_vaporTemperatureSetPoint);
+    if(m_currentBurnRate>0)
+    {
+        m_currentBurnRate--;
+    }
+    ui->burnRateIndicator->setValue(m_currentBurnRate);
+    ui->burnRateIndicator2->setValue(m_currentBurnRate);
+
+    emit burnRateManuallySet(m_currentBurnRate);
 }
 
 void MainWindow::updateVaporTemperature(const VaporTemperatureSample& sample)
@@ -83,7 +93,9 @@ void MainWindow::updateVaporTemperature(const VaporTemperatureSample& sample)
     }
 }
 
-void MainWindow::updateBurnRate(float burnRate)
+void MainWindow::updateBurnRate(int burnRate)
 {
-  Q_UNUSED(burnRate);
+    m_currentBurnRate = burnRate;
+    ui->burnRateIndicator->setValue(burnRate);
+    ui->burnRateIndicator2->setValue(burnRate);
 }

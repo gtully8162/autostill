@@ -13,6 +13,7 @@ class StillAppController: public QObject{
     Q_OBJECT
 public:
     StillAppController();
+
 public slots:
     void initialize();
     void onModeSelected(OperationModeType);

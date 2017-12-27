@@ -18,20 +18,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 signals:
-    void manuallySetBurnRate(float);
+    void burnRateManuallySet(int);
     void selectMode(OperationModeType);
     void selectAutoStillRun(AutoStillRunType);
 public slots:
     void updateVaporTemperature(const VaporTemperatureSample& sample);
-    void updateBurnRate(float burnRate);
+    void updateBurnRate(int burnRate);
 private slots:
-    void incrementVaporSetpoint();
-    void decrementVaporSetpoint();
+    void incrementBurnRate();
+    void decrementBurnRate();
     void onTabSelected(int selectedTab);
 private:
     Ui::MainWindow *ui;
     QSharedPointer<TemperaturePlotWidget> m_temperaturePlot;
-    float m_vaporTemperatureSetPoint;
+    float m_currentBurnRate;
 };
 
 #endif // MAINWINDOW_H

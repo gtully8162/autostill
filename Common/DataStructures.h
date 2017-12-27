@@ -3,6 +3,7 @@
 
 #include <QTime>
 #include <QMetaType>
+
 enum OperationModeType{
     AUTOSTILL_MODE,
     MANUAL_MODE,

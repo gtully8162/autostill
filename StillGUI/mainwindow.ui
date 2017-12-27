@@ -65,16 +65,16 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="autoMode">
      <attribute name="title">
       <string>AutoDistill Mode</string>
      </attribute>
-     <widget class="QLabel" name="peakVaporTemp_2">
+     <widget class="QLabel" name="peakVaporTempLabel">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>60</y>
         <width>91</width>
         <height>41</height>
@@ -109,7 +109,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="currentVaporTempLable">
+     <widget class="QLabel" name="currentVaporTempLabel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -127,7 +127,7 @@
        <string>Current °F:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="BurnRateLabel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -145,12 +145,12 @@
        <string>Burn Rate:</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar">
+     <widget class="QProgressBar" name="burnRateIndicator">
       <property name="geometry">
        <rect>
         <x>130</x>
         <y>120</y>
-        <width>271</width>
+        <width>281</width>
         <height>31</height>
        </rect>
       </property>
@@ -158,7 +158,7 @@
        <number>24</number>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="autoStillHeadsRunSelect">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -176,7 +176,7 @@
        <string>Heads Run</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="autoStillSpiritRunSelect">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -199,7 +199,7 @@
      <attribute name="title">
       <string>Manual Burn Mode</string>
      </attribute>
-     <widget class="QLabel" name="peakVaporTemp_5">
+     <widget class="QLabel" name="peakVaporTempLable2">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -217,12 +217,12 @@
        <string>Peak °F:</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_2">
+     <widget class="QProgressBar" name="burnRateIndicator2">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>130</x>
         <y>120</y>
-        <width>301</width>
+        <width>281</width>
         <height>31</height>
        </rect>
       </property>
@@ -248,7 +248,7 @@
        <string>+</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="peakVaporTemp_6">
+     <widget class="QLCDNumber" name="peakVaporTemp2">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -258,7 +258,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="currentVaporTemp_3">
+     <widget class="QLCDNumber" name="currentVaporTemp2">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -268,7 +268,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="burnRateLable2">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -307,7 +307,7 @@
        <string>-</string>
       </property>
      </widget>
-     <widget class="QLabel" name="currentVaporTempLable_3">
+     <widget class="QLabel" name="currentVaporTempLable2">
       <property name="geometry">
        <rect>
         <x>10</x>
